@@ -5,13 +5,9 @@
 using namespace std;
 
 
-enum CombustibilType { benzina, motorina, hibrid, electric };
-enum CaroserieType { hatchback, combi, SUV, berlina, sedan };
-enum TractiuneType { fata, spate, integrala };
-enum EchipareType { standard, extended, full };
-
 class Automobil
 {
+protected:
     string* Combustibil;
     string* Caroserie;
     string* Tractiune;
@@ -23,7 +19,11 @@ public:
     Automobil( string combustibil, string caroserie,
                string tractiune, int putere,
                string echipare, string vinNr ); //parameterized constructor
-    
+
+    Automobil (const Automobil &obj); // copy Constructor
+
+    Automobil& operator=(const Automobil &obj); // Copy assignment operator
+
     ~Automobil(); //Distructor
 
     const void PrintDetail()const; //Print all the Automobil class atributs

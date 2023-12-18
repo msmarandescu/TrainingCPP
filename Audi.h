@@ -13,6 +13,10 @@ private:
 public:
     Audi( string combustibil, string caroserie, string tractiune, int putere, string echipare, string vinNr, string marca, string model); //parameterized constructor
 
+    Audi (const Audi &obj); // copy Constructor
+
+    Audi& operator=(const Audi &obj); //copy assignment operator
+
     ~Audi(); //Distructor
 
     const void PrintDetail()const;

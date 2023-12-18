@@ -18,7 +18,30 @@ Audi::Audi( string combustibil, string caroserie, string tractiune, int putere, 
     }
 }
 
-Audi::~Audi()
+Audi::Audi (const Audi &obj) // copy Constructor
+:Automobil(*obj.Combustibil, *obj.Caroserie, *obj.Tractiune, *obj.Putere, *obj.Echipare, *obj.VIN_NR)
+{
+    cout << "Audi(copy Constructor)" << endl;
+    Marca = new string(*obj.Marca);
+    Model = new string(*obj.Model);
+}
+
+Audi& Audi::operator=(const Audi &obj) //copy assignment operator
+{
+    cout << "Audi(copy assignment operator)" << endl;
+    this->Caroserie = new string(*obj.Caroserie);
+    this->Combustibil = new string(*obj.Combustibil);
+    this->Tractiune = new string(*obj.Tractiune);
+    this->Putere = new int(*obj.Putere);
+    this->Echipare = new string(*obj.Echipare);
+    this->VIN_NR = new string(*obj.VIN_NR);
+    this->Marca = new string(*obj.Marca);
+    this->Model = new string(*obj.Model);
+
+    return *this;
+}
+
+Audi::~Audi() // distructor
 {
     std::cout << "~Audi()" << std::endl;
     delete Marca;
@@ -36,5 +59,5 @@ const void Audi::PrintDetail()const
 }
 
 const void Audi::printNrOfObjects()const{
-    cout << "Number of objects of type Audi :" << objNr;
+    cout << "Number of objects of type Audi :" << objNr << endl;
 }
