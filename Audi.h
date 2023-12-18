@@ -16,4 +16,5 @@ public:
     ~Audi(); //Distructor
 
     const void PrintDetail()const;
+    const void printNrOfObjects()const;
 };

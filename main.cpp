@@ -12,9 +12,15 @@ int main()
         cout << "    obj class Automobil was created" << endl; 
     }cout << "end of scope obj Automobil" << endl << endl; 
     
-    {   //apelare constructor clasa Audi:
-        Audi audi("benzina", "berlina", "integrala", 220, "full", "4Y1SL65848Z411439", "Audi", "A4");
-        cout << "   obj class Audi was created" << endl; 
+    {   //limitare nr obiecte clasa Audi:
+        try{
+            Audi audi1("benzina", "berlina", "integrala", 220, "full", "4Y1SL65848Z411439", "Audi", "A5");
+            Audi audi2("motorina", "berlina", "integrala", 180, "full", "4Y1SL65848Z411439", "Audi", "A4");
+        }catch (string e)
+        {
+            cout << e << endl;
+        }
+        
     }cout << "end of scope obj Audi" << endl << endl; 
 
     {   //apelare constructor clasa Mercedes:
