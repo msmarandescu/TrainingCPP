@@ -13,9 +13,14 @@ public:
 
     Mercedes& operator=(const Mercedes &obj); // Copy assignment operator
 
+    Mercedes (Mercedes &&obj)noexcept; //move constructor
+
+    Mercedes& operator=(Mercedes &&obj); //move assignment operator
+
     ~Mercedes();
     
     const void PrintDetail()const;
+
     void setSuspensie(string s);
 };
 

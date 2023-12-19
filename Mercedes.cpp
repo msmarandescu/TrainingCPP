@@ -8,7 +8,7 @@ Mercedes::Mercedes( string combustibil, string caroserie, string tractiune, int 
 }
 
 Mercedes::Mercedes (const Mercedes &obj) // copy Constructor
-:Automobil(*obj.Combustibil, *obj.Caroserie, *obj.Tractiune, *obj.Putere, *obj.Echipare, *obj.VIN_NR)
+:Automobil(obj)
 {
     cout << "Mercedes(copy Constructor)" << endl;
     Suspensie = new string(*obj.Suspensie);
@@ -16,15 +16,34 @@ Mercedes::Mercedes (const Mercedes &obj) // copy Constructor
 
 Mercedes& Mercedes::operator=(const Mercedes &obj)// copy assignment operator
 {
-     cout << "Mercedes(copy assignment operator)" << endl;
-    this->Caroserie = new string(*obj.Caroserie);
-    this->Combustibil = new string(*obj.Combustibil);
-    this->Tractiune = new string(*obj.Tractiune);
-    this->Putere = new int(*obj.Putere);
-    this->Echipare = new string(*obj.Echipare);
-    this->VIN_NR = new string(*obj.VIN_NR);
-    this->Suspensie = new string(*obj.Suspensie);
+    if (this != &obj)
+    {
+        cout << "Mercedes(copy assignment operator)" << endl;
+        Automobil::operator=(obj);
+        delete Suspensie;
+        Suspensie = new string(*obj.Suspensie);
+    }
+    return *this;
+}
 
+Mercedes::Mercedes (Mercedes &&obj) noexcept //move constructor
+        :Automobil(move(obj))
+{
+    cout << "Mercedes(move constructor)" << endl;
+    Suspensie = obj.Suspensie;
+    obj.Suspensie = nullptr;
+}
+
+Mercedes& Mercedes::operator=(Mercedes &&obj) //move assignment operator
+{
+    cout << "Mercedes(move assignment operator)" << endl;
+    if(this != &obj)
+    {
+        Automobil::operator=(move(obj));
+        delete Suspensie;
+        Suspensie = obj.Suspensie;
+        obj.Suspensie = nullptr;
+    }
     return *this;
 }
 
@@ -32,7 +51,6 @@ Mercedes::~Mercedes()
 {
     std::cout << "~Mercedes()" << std::endl;
     delete Suspensie;
-    Suspensie = nullptr;
 }
 
 const void Mercedes::PrintDetail()const
@@ -43,7 +61,7 @@ const void Mercedes::PrintDetail()const
 
 void Mercedes::setSuspensie(string s)
 {
-    if(Suspensie)
+    if(Suspensie != nullptr)
     {
         *Suspensie = s;
     }

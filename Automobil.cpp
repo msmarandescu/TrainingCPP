@@ -18,23 +18,80 @@ Automobil::Automobil( string combustibil, string caroserie,
 Automobil::Automobil(const Automobil &obj) //copy constructor
 {
     std::cout << "Automobil(copy constructor)" << std::endl;
-    this->Caroserie = new string(*obj.Caroserie);
-    this->Combustibil = new string(*obj.Combustibil);
-    this->Tractiune = new string(*obj.Tractiune);
-    this->Putere = new int(*obj.Putere);
-    this->Echipare = new string(*obj.Echipare);
-    this->VIN_NR = new string(*obj.VIN_NR);
+    Caroserie = new string(*obj.Caroserie);
+    Combustibil = new string(*obj.Combustibil);
+    Tractiune = new string(*obj.Tractiune);
+    Putere = new int(*obj.Putere);
+    Echipare = new string(*obj.Echipare);
+    VIN_NR = new string(*obj.VIN_NR);
 }
 
 Automobil& Automobil::operator=(const Automobil &obj) // Copy assignment operator
 {
     std::cout << "Automobil(Copy assignment operator)" << std::endl;
-    *Caroserie = *obj.Caroserie;
-    *Combustibil = *obj.Combustibil;
-    *Tractiune = *obj.Tractiune;
-    *Putere = *obj.Putere;
-    *Echipare = *obj.Echipare;
-    *VIN_NR = *obj.VIN_NR;
+    if(this != &obj)
+    {    
+        delete Caroserie;
+        delete Combustibil;
+        delete Tractiune;
+        delete Putere;
+        delete Echipare;
+        delete VIN_NR;
+
+        Caroserie = new string(*obj.Caroserie);
+        Combustibil = new string(*obj.Combustibil);
+        Tractiune = new string(*obj.Tractiune);
+        Putere = new int(*obj.Putere);
+        Echipare = new string(*obj.Echipare);
+        VIN_NR = new string(*obj.VIN_NR);
+    }
+    return *this;
+}
+
+Automobil::Automobil (Automobil &&obj) noexcept// move constructor
+{
+    std::cout << "Automobil(move constructor)" << std::endl;
+    Combustibil = obj.Combustibil;
+    Caroserie = obj.Caroserie;
+    Tractiune = obj.Tractiune;
+    Putere = obj.Putere;
+    Echipare = obj.Echipare;
+    VIN_NR = obj.VIN_NR;
+
+    obj.Combustibil = nullptr;
+    obj.Caroserie = nullptr;
+    obj.Tractiune = nullptr;
+    obj.Putere = nullptr;
+    obj.Echipare = nullptr;
+    obj.VIN_NR = nullptr;
+}
+
+Automobil& Automobil::operator=( Automobil &&obj) // move assignment operator
+{
+    std::cout << "Automobil(move assignment operator)" << std::endl;
+    if(this != &obj)
+    {
+        delete Caroserie;
+        delete Combustibil;
+        delete Tractiune;
+        delete Putere;
+        delete Echipare;
+        delete VIN_NR;
+
+        Combustibil = obj.Combustibil;
+        Caroserie = obj.Caroserie;
+        Tractiune = obj.Tractiune;
+        Putere = obj.Putere;
+        Echipare = obj.Echipare;
+        VIN_NR = obj.VIN_NR;
+
+        obj.Combustibil = nullptr;
+        obj.Caroserie = nullptr;
+        obj.Tractiune = nullptr;
+        obj.Putere = nullptr;
+        obj.Echipare = nullptr;
+        obj.VIN_NR = nullptr;
+    }
     return *this;
 }
 
@@ -42,17 +99,11 @@ Automobil::~Automobil()
 {
     std::cout << "~Automobil()" << std::endl;
     delete Combustibil;
-    Combustibil = nullptr;
     delete Caroserie;
-    Caroserie = nullptr;
     delete Tractiune;
-    Tractiune = nullptr;
     delete Putere;
-    Putere = nullptr;
     delete Echipare;
-    Echipare = nullptr;
     delete VIN_NR;
-    VIN_NR = nullptr;
 }
 
 const void Automobil::PrintDetail()const

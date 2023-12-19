@@ -24,6 +24,10 @@ public:
 
     Automobil& operator=(const Automobil &obj); // Copy assignment operator
 
+    Automobil (Automobil &&obj)noexcept; // move constructor
+
+    Automobil& operator=(Automobil &&obj); // move assignment operator
+
     ~Automobil(); //Distructor
 
     const void PrintDetail()const; //Print all the Automobil class atributs

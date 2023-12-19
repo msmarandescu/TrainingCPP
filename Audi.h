@@ -17,6 +17,10 @@ public:
 
     Audi& operator=(const Audi &obj); //copy assignment operator
 
+    Audi (Audi &&obj)noexcept; //move constructor
+
+    Audi& operator=(Audi &&obj); //move assignment operator
+
     ~Audi(); //Distructor
 
     const void PrintDetail()const;
