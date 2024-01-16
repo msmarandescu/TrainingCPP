@@ -2,53 +2,50 @@
 
 static int objNr = 0;
 
-Audi::Audi( string combustibil, string caroserie, string tractiune, int putere, string echipare, string vinNr, string marca, string model) //parameterized constructor
-              :Automobil(combustibil, caroserie, tractiune, putere, echipare, vinNr)
+Audi::Audi(std::string combustibil, std::string caroserie, std::string tractiune, int putere,
+           std::string echipare, std::string vinNr, std::string marca, std::string model)
+    : Automobil(combustibil, caroserie, tractiune, putere,
+                echipare, vinNr)
 {
-    // std::cout << "Audi()" << std::endl;
-    if(objNr < 2)
+    if(objNr < 1)
     {
         std::cout << "Audi()" << std::endl;
-        Marca = new string(marca);
-        Model = new string(model);
+        Marca = make_unique<string>(std::move(marca));
+        Model = make_unique<string>(std::move(model));
         objNr++;
-    }else
-    {
-         throw string("Error: Audi class can have only one obj created!");
     }
+    else{
+        cout << "Audi() Error: Audi class can have only one obj created!" << endl;
+    }
+    
 }
 
 Audi::Audi (const Audi &obj) // copy Constructor
-:Automobil(*obj.Combustibil, *obj.Caroserie, *obj.Tractiune, *obj.Putere, *obj.Echipare, *obj.VIN_NR)
+:Automobil(obj)
 {
-    cout << "Audi(copy Constructor)" << endl;
-    Marca = new string(*obj.Marca);
-    Model = new string(*obj.Model);
+    cout << "Audi(Copy Constructor)" << endl;
+    Marca = std::make_unique<std::string>(*obj.Marca);
+    Model = std::make_unique<std::string>(*obj.Model);
 }
 
 Audi& Audi::operator=(const Audi &obj) //copy assignment operator
 {
     cout << "Audi(copy assignment operator)" << endl;
-    if(this != &obj)
+    if (this != &obj)
     {
-        this->Caroserie = new string(*obj.Caroserie);
-        this->Combustibil = new string(*obj.Combustibil);
-        this->Tractiune = new string(*obj.Tractiune);
-        this->Putere = new int(*obj.Putere);
-        this->Echipare = new string(*obj.Echipare);
-        this->VIN_NR = new string(*obj.VIN_NR);
-        this->Marca = new string(*obj.Marca);
-        this->Model = new string(*obj.Model);
+        Automobil::operator=(obj);
+        Marca = std::make_unique<std::string>(*obj.Marca);
+        Model = std::make_unique<std::string>(*obj.Model);
     }
     return *this;
 }
 
 Audi::Audi (Audi &&obj)noexcept //move constructor
-    :Automobil (move(obj))
+    : Automobil(std::move(obj)),
+      Marca(std::move(obj.Marca)),
+      Model(std::move(obj.Model))
 {
     std::cout << "Audi(move constructor)" << std::endl;
-    Marca = obj.Marca;
-    Model = obj.Model;
     obj.Marca = nullptr;
     obj.Model = nullptr;
 
@@ -57,13 +54,11 @@ Audi::Audi (Audi &&obj)noexcept //move constructor
 Audi& Audi::operator=(Audi &&obj) //move assignment operator
 {
     cout << "Audi(move assignment operator)" << endl;
-    if(this != &obj)
+    if (this != &obj)
     {
-        Automobil::operator=(move(obj));
-        delete Marca;
-        delete Model;
-        Marca = obj.Marca;
-        Model = obj.Model;
+        Automobil::operator=(std::move(obj));
+        Marca = std::move(obj.Marca);
+        Model = std::move(obj.Model);
         obj.Marca = nullptr;
         obj.Model = nullptr;
     }
@@ -73,8 +68,6 @@ Audi& Audi::operator=(Audi &&obj) //move assignment operator
 Audi::~Audi() // distructor
 {
     std::cout << "~Audi()" << std::endl;
-    delete Marca;
-    delete Model;
     objNr--;
 }
 

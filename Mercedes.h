@@ -5,7 +5,7 @@
 class Mercedes:Automobil
 {
 private:
-    string* Suspensie;
+    std::unique_ptr<std::string> Suspensie;
 public:
     Mercedes( string combustibil, string caroserie, string tractiune, int putere, string echipare, string vinNr, string suspensie); //parameterized constructor
 

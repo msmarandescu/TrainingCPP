@@ -8,12 +8,12 @@ using namespace std;
 class Automobil
 {
 protected:
-    string* Combustibil;
-    string* Caroserie;
-    string* Tractiune;
-    int* Putere;
-    string* Echipare;
-    string* VIN_NR;
+    std::unique_ptr<std::string> Combustibil;
+    std::unique_ptr<std::string> Caroserie;
+    std::unique_ptr<std::string> Tractiune;
+    std::unique_ptr<int> Putere;
+    std::unique_ptr<std::string> Echipare;
+    std::unique_ptr<std::string> VIN_NR;
     
 public:
     Automobil( string combustibil, string caroserie,
