@@ -1,89 +1,104 @@
 #include <iostream>
-#include <memory>
+#include <list>
+#include <thread>
+#include <mutex>
+#include <atomic>
+#include <chrono>
 using namespace std;
 
-class Vehicle
-{
-public:
-    virtual ~Vehicle() {}  // Provide a virtual destructor definition
-    virtual void START_ENGINE() = 0;
-    virtual void GET_READY() = 0;
-};
+template <class T>
+class CustomList {
 
-class Aircraft : public Vehicle
-{
-public:
-    void START_ENGINE() override { cout << "Aircraft Engine Started" << endl; }
-    void GET_READY() override { cout << "Aircraft is ready for operation" << endl; }
-};
+private:
+    static CustomList<T>* _instance;
+    list<T> _list;
+    mutex _mtx;
 
-class Drone : public Vehicle
-{
 public:
-    void START_ENGINE() override { cout << "Drone Engine Started" << endl; }
-    void GET_READY() override { cout << "Drone is ready for operation" << endl; }
-};
-
-class Car : public Vehicle
-{
-public:
-    void START_ENGINE() override { cout << "Car Engine Started" << endl; }
-    void GET_READY() override { cout << "Car is ready for operation" << endl; }
-};
-
-class Truck : public Vehicle
-{
-public:
-    void START_ENGINE() override { cout << "Truck Engine Started" << endl; }
-    void GET_READY() override { cout << "Truck is ready for operation" << endl; }
-};
-
-
-template <typename Type>
-class VehicleFactory : public Vehicle
-{
-public:
-    static Vehicle *create_vehicle()
-    {
-        return new Type;
+    static CustomList<T>* getInstance() {
+        if (_instance == NULL) {
+            _instance = new CustomList<T>();
+        }
+        return _instance;
     }
 
-    void START_ENGINE() override {}
-    void GET_READY() override {}
+    void insertData(T val) {
+        lock_guard<mutex> lock(_mtx);
+        _list.push_back(val);
+    }
+
+    T getData() {
+        T ret;
+        {
+            lock_guard<mutex> lock(_mtx);
+            if (!_list.empty()) {
+                ret = _list.front();
+                _list.pop_front();
+            }
+        }
+        return ret;
+    }
+
+    void display() {
+        lock_guard<mutex> lock(_mtx);
+        cout << "List: ";
+        for (auto i = _list.begin(); i != _list.end(); i++) {
+            cout << *i << ",";
+        }
+        cout << endl;
+    }
+
+    int getSize() {
+        lock_guard<mutex> lock(_mtx);
+        auto ret = _list.size();
+        return ret;
+    }
 };
 
-int main()
-{
-    VehicleFactory<Aircraft> aircraftFactory;
-    Vehicle *aircraft = aircraftFactory.create_vehicle();
-    aircraft->START_ENGINE();
-    aircraft->GET_READY();
+template <class T> CustomList<T>* CustomList<T>::_instance;
+CustomList<int>* dataInstance = CustomList<int>::getInstance();
 
-    cout << endl;
+int main() {
+    atomic<bool> running(true);
+    srand(time(NULL));
 
-    VehicleFactory<Drone> droneFactory;
-    Vehicle *drone = droneFactory.create_vehicle();
-    drone->START_ENGINE();
-    drone->GET_READY();
+    thread t1([&]() { /*insert values*/
+        while (running) {
+            int val = rand() % 10;
+            dataInstance->insertData(val);
+            this_thread::sleep_for(chrono::milliseconds(100));
+            cout << "Thread 1: insert data:" << val << endl;
+        }
+    });
 
-    cout << endl;
+    thread t2([&]() { /* process values from list*/
+        this_thread::sleep_for(chrono::milliseconds(200));
+        while (true) {
+            if (dataInstance->getSize() > 0) 
+            {
+                this_thread::sleep_for(chrono::milliseconds(100));
+                cout << "                          Thread 2: data processed:" << dataInstance->getData() << endl;
+            } 
+            else 
+            {
+                break;
+            }
+        }
+    });
 
-    VehicleFactory<Car> carFactory;
-    Vehicle *car = carFactory.create_vehicle();
-    car->START_ENGINE();
-    car->GET_READY();
-    
-    cout << endl;
+    thread t3([&]() { /*timmer*/
+        int t = 10;
+        while (t != 0) {
+            this_thread::sleep_for(chrono::milliseconds(100));
+            t--;
+        }
+        running = false;
+        cout << "Thread 3 stop" << endl;
+    });
 
-    VehicleFactory<Truck> truckFactory;
-    Vehicle *truck = truckFactory.create_vehicle();
-    truck->START_ENGINE();
-    truck->GET_READY();
-
-    delete aircraft;
-    delete drone;
-    delete car;
-    delete truck;
+    t1.join();
+    t2.join();
+    t3.join();
 
     return 0;
 }
