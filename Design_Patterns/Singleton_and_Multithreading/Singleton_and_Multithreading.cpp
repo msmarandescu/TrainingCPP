@@ -9,16 +9,17 @@ template <class T>
 class CustomList {
 
 private:
-    static CustomList<T>* _instance;
     std::list<T> _list;
     std::mutex _mtx;
+    CustomList(){};
 
 public:
-    static CustomList<T>* getInstance() {
-        if (_instance == NULL) {
-            _instance = new CustomList<T>();
-        }
-        return _instance;
+    CustomList(CustomList const&) = delete;
+    void operator=(CustomList const&) = delete;
+
+    static CustomList<T>& getInstance() {
+        static CustomList<T> instance;
+        return instance;
     }
 
     void insertData(T val) {
@@ -41,8 +42,8 @@ public:
     void display() {
         std::lock_guard<std::mutex> lock(_mtx);
         std::cout << "List: ";
-        for (auto i = _list.begin(); i != _list.end(); i++) {
-            std::cout << *i << ",";
+        for (auto i : _list) {
+            std::cout << i << ",";
         }
         std::cout << std::endl;
     }
@@ -54,8 +55,7 @@ public:
     }
 };
 
-template <class T> CustomList<T>* CustomList<T>::_instance;
-CustomList<int>* dataInstance = CustomList<int>::getInstance();
+#define listInt CustomList<int>::getInstance()
 
 int main() {
     std::atomic<bool> running(true);
@@ -64,7 +64,7 @@ int main() {
     std::thread t1([&]() { /*insert values*/
         while (running) {
             int val = rand() % 10;
-            dataInstance->insertData(val);
+            listInt.insertData(val);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             std::cout << "Thread 1: insert data:" << val << std::endl;
         }
@@ -73,10 +73,10 @@ int main() {
     std::thread t2([&]() { /* process values from list*/
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
         while (true) {
-            if (dataInstance->getSize() > 0) 
+            if (listInt.getSize() > 0) 
             {
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
-                std::cout << "                          Thread 2: data processed:" << dataInstance->getData() << std::endl;
+                std::cout << "                          Thread 2: data processed:" << listInt.getData() << std::endl;
             } 
             else 
             {
@@ -86,11 +86,7 @@ int main() {
     });
 
     std::thread t3([&]() { /*timmer*/
-        int t = 10;
-        while (t != 0) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            t--;
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         running = false;
         std::cout << "Thread 3 stop" << std::endl;
     });
@@ -99,5 +95,6 @@ int main() {
     t2.join();
     t3.join();
 
+    std::cout << "Exit main thread!" << std::endl;
     return 0;
 }
