@@ -1,0 +1,4 @@
+2024-02-20 10:53:12:Server started! Waiting for client request...
+2024-02-20 10:53:14:Server received message from client: what's the date?
+2024-02-20 10:53:14:Server sent response to client: 2024-02-20 10:53:14
+2024-02-20 10:53:15:Server closing!
