@@ -1,0 +1,3 @@
+23.02.2024: C++
+    -Am citit documentatia legata de shared memory din documentatia de boost(https://www.boost.org/doc/libs/1_76_0/doc/html/interprocess/sharedmemorybetweenprocesses.html).
+    -Am incercat sa scriu un program care sa contina 2 procese care comunica prin intermediul shared memory-task5 (commitId: 606db7359c0ac98b6bf1e479ab1e7089f0bfc186).
