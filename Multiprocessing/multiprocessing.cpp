@@ -5,8 +5,19 @@
 #include <condition_variable>
 #include <chrono>
 #include <string>
+#include <string>
+#include <boost/signals2.hpp>
 
-class fileReader
+using namespace boost;
+using namespace boost::signals2;
+
+
+template <typename T> class Observable {
+public:
+    boost::signals2::signal<void(T&, const std::string&, const int& taskId)> field_changed;
+};
+
+class fileReader : public Observable<fileReader>
 {
 private:
     fileReader(){}
@@ -35,6 +46,7 @@ public:
         {
             std::cout << "Eroare la deschiderea fișierului \n";
         }
+        field_changed(*this, "readCommand()", getThreadId());
         return message;
     }
 
@@ -50,7 +62,7 @@ public:
 
         writeStream << message;
         writeStream.close();
-       
+        field_changed(*this, "writeFile()", getThreadId());
     }
 
     void addToLog(std::string fileName, std::string mes)
@@ -62,7 +74,17 @@ public:
             return;
         }
         os << mes;
+        field_changed(*this, "addToLog()", getThreadId());
         os.close();
+    }
+
+    int getThreadId()
+    {
+        std::thread::id threadId = std::this_thread::get_id();
+        size_t hashValue = std::hash<std::thread::id>{}(threadId);
+        int intThreadId = std::abs(static_cast<int>(hashValue));
+
+        return intThreadId;
     }
 
 };
@@ -75,6 +97,7 @@ bool clientReady = false;
 bool serverReady = false;
 std::mutex mtx;
 std::condition_variable cv;
+
 
 
 void server(const std::string sharedFileName)
@@ -97,9 +120,9 @@ void server(const std::string sharedFileName)
 
 void client(const std::string& sharedFileName)
 {
+
     logClient("Client started!\n");
     std::unique_lock<std::mutex> lock(mtx);
-    
     clientReady = false;
     fileInstance.writeFile(sharedFileName, "what's the date?");
     logClient("Client writes to server: " + fileInstance.readCommand(sharedFileName) + "\n");
@@ -120,8 +143,16 @@ int main() {
     fileInstance.writeFile("client.log", "");
     fileInstance.writeFile("server.log", "");
 
+    auto conn = fileInstance.field_changed.connect(
+        [](fileReader& obj, const std::string& field_name, const int& taskId)
+        {
+            std::cout << field_name << " method was invoked by Task Id: " << taskId << std::endl;
+        }
+    );
+
     std::future<void> task1 = std::async(std::launch::async, server, sharedFileName);
     std::future<void> task2 = std::async(std::launch::async, client, sharedFileName);
+    
 
     task1.get();
     task2.get();
