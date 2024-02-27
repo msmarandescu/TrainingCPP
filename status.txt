@@ -8,3 +8,8 @@
     -M-am familiarizat cu utilizarea design patern-ului de observer realizand un exemplu din tutorial si am realizat task-ul 6 (Task 6: de introdus un observer in implementarea
     din unul dintre taskurile precedente). Am modificat exemplul de multiprocessing adaugand un observer pentru clasa fileReader
     (commitId: adbc516bb8337e24f242166a8c969f80a5b5a4d6 si 6705df493127b5ab174e813c83faf5093ba60ab4).
+    
+27.02.2024: C++
+    -Am lucrat la taskul nr.7. Am modificat programul de la taskul5(cel de multiprocessing cu sokets), impartind in fisiere separate serverul si clientul pentru a putea 
+    crea build-ul separat. Am reusit sa creez un script care sa imi compileze si sa-mi faca build-ul pentru cele 2 programe(server si client) dar nu imi ruleaza cand dau
+    restart. Trebuie sa mai incerc si alte metode de a-l seta sa ruleze la startup.
