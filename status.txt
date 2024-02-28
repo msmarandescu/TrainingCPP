@@ -10,6 +10,17 @@
     (commitId: adbc516bb8337e24f242166a8c969f80a5b5a4d6 si 6705df493127b5ab174e813c83faf5093ba60ab4).
     
 27.02.2024: C++
-    -Am lucrat la taskul nr.7. Am modificat programul de la taskul5(cel de multiprocessing cu sokets), impartind in fisiere separate serverul si clientul pentru a putea 
-    crea build-ul separat. Am reusit sa creez un script care sa imi compileze si sa-mi faca build-ul pentru cele 2 programe(server si client) dar nu imi ruleaza cand dau
-    restart. Trebuie sa mai incerc si alte metode de a-l seta sa ruleze la startup.
+    -Am lucrat la taskul nr.7. Am modificat programul de la taskul5(cel de multiprocessing cu sokets), impartind in fisiere separate
+    serverul si clientul pentru a putea crea build-ul separat. Am reusit sa creez un script care sa imi compileze si sa-mi faca 
+    build-ul pentru cele 2 programe(server si client) dar nu imi ruleaza cand dau restart. Trebuie sa mai incerc si alte metode 
+    de a-l seta sa ruleze la startup.
+
+28.02.2024: C++
+    -Am incercat automatizez scriptul de la task-ul 7 sa ruleze automat la startup prin mai multe metode:
+    1. am creat scrptul bash care sa ruleze cele doua programe, server si client, am copiat scriptul in /etc/init.d/, l-am activat
+    folosind comanda "sudo update-rc.d nume_script defaults". Scriptul nu ruleaza automat. Daca scriptul este
+    rulat manual dein cmd, functioneaza ok(vezi comit id: 3f06256).
+    
+    2. am creat un fisier .service in /etc/systemd/system/ care sa-mi porneasca automat la startup scriptul; am actualizat lista 
+    de servicii systemd pentru a-l lua in considerare si am activat. sctiptul ce deschide server-ul si clientul ruleaza la startup
+    der are un comportament ciudat(nu imi creaza anumite fisiere .log conform functionalitatii normale).
