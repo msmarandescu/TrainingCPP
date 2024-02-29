@@ -1,0 +1,1 @@
+g++ -o ex1 ex1.cpp -L/usr/share/doc/libboost-dev -lboost_unit_test_framework && ./ex1 --log_level=all 
