@@ -1,7 +1,9 @@
+CW:8
 23.02.2024: C++
     -Am citit documentatia legata de shared memory din documentatia de boost(https://www.boost.org/doc/libs/1_76_0/doc/html/interprocess/sharedmemorybetweenprocesses.html).
     -Am incercat sa scriu un program care sa contina 2 procese care comunica prin intermediul shared memory-task5 (commitId: 606db7359c0ac98b6bf1e479ab1e7089f0bfc186).
-    
+
+CW:9
 26.02.2024: C++
     -Am urmarit training-ul de "Discover the modern implementation of design patterns with С++" sectiuna observer si am citit documentatia de boost legata de observer design 
     patern(https://stackoverflow.com/questions/28416088/observer-pattern-via-boost-signal2) 
@@ -24,3 +26,8 @@
     2. am creat un fisier .service in /etc/systemd/system/ care sa-mi porneasca automat la startup scriptul; am actualizat lista 
     de servicii systemd pentru a-l lua in considerare si am activat. sctiptul ce deschide server-ul si clientul ruleaza la startup
     der are un comportament ciudat(nu imi creaza anumite fisiere .log conform functionalitatii normale).
+    
+29.02.2024: C++
+	-Am urmarit training-uri pe youtube legate de utilizarea librariei boost pentru unit test si am 
+	citit din documentatia de boost.
+	-Am scris un program de test (commitId: 5ba6d98).
