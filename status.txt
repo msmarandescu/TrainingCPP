@@ -28,6 +28,10 @@ CW:9
     der are un comportament ciudat(nu imi creaza anumite fisiere .log conform functionalitatii normale).
     
 29.02.2024: C++
-	-Am urmarit training-uri pe youtube legate de utilizarea librariei boost pentru unit test si am 
-	citit din documentatia de boost.
-	-Am scris un program de test (commitId: 5ba6d98).
+	-Am urmarit training-uri pe youtube legate de utilizarea librariei boost pentru unit test si am citit din documentatia de boost.
+	-Am scris un program de test (commitId: 5ba6d98a8b10c8553752dbc6cbab90e097cee91b).
+
+01.03.2024: C++
+	-Am mai citit din documentatia de boost despre boost unit test si am lucrat la implementarea task-ului 8,sa implementez unit test
+	pentru un task mai vechi. Am ales task-ul de singleton pe care sa implementez task-urile de unit test
+	(commitId:c65ca004f7c24e17e1b095859606e2c7fb7afabc).
