@@ -46,4 +46,8 @@ CW10
 04.03.2024: C++
     -am cautat informatii despre cum se utilizeaza Cmake.
     -am creat un exemplu de boost unit test pentru a-l compila cu Cmake (commit id:dccace3f5b9b985d17ba4db59a17d30816aed604).
+   
+05.03.2024: C++ 
+    -am mai citi despre Cmake si am realizat task-ul 10 (commit Id:6f7cfc034062008c47ed5dc72f8eea6910c34c91).
+    
 
