@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/CustomList.h
+iostream
+-
+list
+-
+mutex
+-
+
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/CustomListTest.cpp
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/CustomListTest.h
+-
+
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/CustomListTest.h
+boost/test/included/unit_test.hpp
+-
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/CustomList.h
+-
+

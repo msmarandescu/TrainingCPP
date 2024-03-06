@@ -1,0 +1,4 @@
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/build/CMakeFiles/rebuild_cache.dir
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/build/CMakeFiles/edit_cache.dir
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/build/CMakeFiles/custom_list.dir
+/home/projectx/Desktop/Git_Repo/TrainingCPP/BoostUnitTest/Cmake/build/CMakeFiles/test_custom_list.dir

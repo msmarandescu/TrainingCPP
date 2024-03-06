@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcustom_list.a  CMakeFiles/custom_list.dir/CustomList.cpp.o
+/usr/bin/ranlib libcustom_list.a
