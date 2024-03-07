@@ -50,4 +50,6 @@ CW10
 05.03.2024: C++ 
     -am mai citi despre Cmake si am realizat task-ul 10 (commit Id:6f7cfc034062008c47ed5dc72f8eea6910c34c91).
     
+06.04.2024: C++
+    - AOSP training.
 
