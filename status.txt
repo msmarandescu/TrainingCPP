@@ -55,4 +55,8 @@ CW10
 
 08.04.2024: C++
     - AOSP training.
+    
+CW11
+11.03.2024: C++
+    - AOSP training.
 
