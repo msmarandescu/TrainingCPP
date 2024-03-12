@@ -59,4 +59,7 @@ CW10
 CW11
 11.03.2024: C++
     - AOSP training.
+    
+12.03.2024: C++
+    - Design Patterns in Modern C++ : adapter pattern (commit id: 8d405abf17d525ac3c070073c0dfe2d862e3450f).
 
