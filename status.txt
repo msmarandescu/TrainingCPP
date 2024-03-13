@@ -62,4 +62,7 @@ CW11
     
 12.03.2024: C++
     - Design Patterns in Modern C++ : adapter pattern (commit id: 8d405abf17d525ac3c070073c0dfe2d862e3450f).
+    
+13.03.2024: C++
+    - Design Patterns in Modern C++ : State design pattern (commit id:  8804f88c261cbb7bf0e590220889106cb46dcb6b).
 
