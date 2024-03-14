@@ -65,4 +65,9 @@ CW11
     
 13.03.2024: C++
     - Design Patterns in Modern C++ : State design pattern (commit id:  8804f88c261cbb7bf0e590220889106cb46dcb6b).
+    
+14.03.2024: C++
+    - Am inceput sa urmaresc serea de training-uri de generative AI. Am urmarit Intro to ChatGPT and Generative AI 
+	si am incercat sa utilizez conceptele prezentate in curs.
+    - Am participat la training-ul de RDR ADAS Training leve 1.
 
