@@ -70,4 +70,7 @@ CW11
     - Am inceput sa urmaresc serea de training-uri de generative AI. Am urmarit Intro to ChatGPT and Generative AI 
 	si am incercat sa utilizez conceptele prezentate in curs.
     - Am participat la training-ul de RDR ADAS Training leve 1.
+    
+14.03.2024: C++ 
+    -Am inceput trainingul de generative AI"The complete prompt engineering for ai bootcamp (2024)"
 
