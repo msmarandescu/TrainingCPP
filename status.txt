@@ -73,4 +73,7 @@ CW11
     
 14.03.2024: C++ 
     -Am inceput trainingul de generative AI"The complete prompt engineering for ai bootcamp (2024)"
+    
+14.03.2024: C++ 
+    -Trainingul de generative AI"The complete prompt engineering for ai bootcamp (2024)".
 
