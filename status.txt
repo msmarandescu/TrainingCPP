@@ -81,5 +81,8 @@ CW12
 19.03.2024: C++ 
     -Trainingul de generative AI "Introduction to openai api & chatgpt api for developers".
 
+19.03.2024: C++ 
+    -Generative AI: "Code faster with #Tabnine AI assistant", Tabnine plugin for VSC.
+    -Unlock the power of AI - Tech talk session 1
 
 
