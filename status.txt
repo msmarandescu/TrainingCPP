@@ -87,4 +87,7 @@ CW12
     
 21.03.2024: C++ 
     -AOSP training and Generative AI.
+    
+22.03.2024: C++ 
+    -AOSP training and Generative AI.
 
