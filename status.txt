@@ -97,4 +97,8 @@ CW13
     
 26.03.2024: C++ 
     -AOSP training and Generative AI.
+    
+27.03.2024: C++  
+    -udemy corse: Visual Embedded Android (AOSP) with Drawings and Practice.
+
 
