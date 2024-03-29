@@ -103,5 +103,8 @@ CW13
     
 28.03.2024: C++  
     -udemy corse: Visual Embedded Android (AOSP) with Drawings and Practice.
+    
+29.03.2024: C++  
+    -udemy corse: Visual Embedded Android (AOSP) with Drawings and Practice.
 
 
