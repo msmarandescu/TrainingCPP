@@ -118,4 +118,7 @@ CW14
     -udemy corse: ChatGPT Plugins + 25 Powerful AI Tools 10x Your Productivity and Creativity | ChatGPT, Generative AI, Prompt Engineering
     -udemy corse: Explore Android Open Source Project and design powerful systems using Android 11
 
+04.04.2024: C++
+    -udemy corse: ChatGPT Complete Guide: Learn Midjourney, ChatGPT 4 & More
+    -udemy corse: Explore Android Open Source Project and design powerful systems using Android 11 - finished
 
