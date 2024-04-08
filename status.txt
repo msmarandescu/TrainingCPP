@@ -126,4 +126,10 @@ CW14
     -udemy corse: ChatGPT Complete Guide: Learn Midjourney, ChatGPT 4 & More
     -udemy corse: Android Architecture Masterclass
 
+CW15
+08.04.2024: C++
+-udemi corse: Learn practical coding skills for working professionally with AI, including GPT-4, Stable Diffusion, and GitHub Copilot. - Finished
+-udemi corse: ChatGPT Complete Guide: Learn Midjourney, ChatGPT 4 & More
+
+
 
